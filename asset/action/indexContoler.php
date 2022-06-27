@@ -1,4 +1,6 @@
 <?php
+// CONNEXION DATABASE
+require('action/dataBase.php');
 // IS RECEIVED SHORTCUT
 if(isset($_GET['q'])){
 
@@ -38,17 +40,17 @@ if(isset($_POST['url'])) {
 	// VARIABLE
 	$url = $_POST['url'];
 
-	// VERIFICATION
+	// VERIFICATION SI URL EXISTE PAS 
 	if(!filter_var($url, FILTER_VALIDATE_URL)) {
 		// PAS UN LIEN
 		header('location: ../?error=true&message=Adresse url non valide');
 		exit();
 	}
 
-	// SHORTCUT
+	// RACCOURCIE
 	$shortcut = crypt($url, rand());
 
-	// HAS BEEN ALREADY SEND ?
+	// SI EXIST UNE FOIS ?
 	$bdd = new PDO('mysql:host=localhost;dbname=bitly;charset=utf8', 'root', '');
 	$req = $bdd->prepare('SELECT COUNT(*) AS x FROM links WHERE url = ?');
 	$req->execute(array($url));
@@ -62,7 +64,7 @@ if(isset($_POST['url'])) {
 
 	}
 
-	// SENDING
+	// SAUVEGARDE BDD URL 
 	$req = $bdd->prepare('INSERT INTO links(url, shortcut) VALUES(?, ?)');
 	$req->execute(array($url, $shortcut));
 
