@@ -1,77 +1,80 @@
 <?php
-    require('asset/action/indexContoler.php');
+require('asset/action/indexContoler.php');
 ?>
 
 <!-- Corp Html -->
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<title>Url Lite</title>
-		<link rel="stylesheet" type="text/css" href="asset/style.css">
-		<link rel="icon" type="image/png" href="asset/img/favico.png">
-	</head>
 
-	<body>
-		<!-- PRESENTATION -->
-		<section id="hello">
-			
-			<!-- CONTAINER -->
-			<div class="container">
-				
-				<!-- HEADER -->
-				<header>
-					<img src="asset/img/logo.png" alt="logo" id="logo">
-				</header>
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="author" content="Peyrot Eric">
+	<title>Url Lite</title>
+	<link rel="stylesheet" type="text/css" href="asset/style.css">
+	<link rel="icon" type="image/png" href="asset/img/favico.png">
+	<!-- style text -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Bungee+Inline&display=swap" rel="stylesheet">
+</head>
 
-				<!-- VP -->
-				<h1>Une url longue ? Raccourcissez-là ?</h1>
-				<h2>Largement meilleur et plus court que les autres.</h2>
+<body>
+	<!-- section url lite -->
+	<section id="urlLite">
 
-				<!-- FORM -->
-				<form method="post" action="../">
-					<input type="url" name="url" placeholder="Collez un lien à raccourcir">
-					<input type="submit" value="Raccourcir">
-				</form>
+		<div class="container">
 
-				<?php if(isset($_GET['error']) && isset($_GET['message'])) { ?>
-					<div class="center">
-						<div id="result">
-							<b><?php echo htmlspecialchars($_GET['message']); ?></b>
-						</div>
+			<!-- HEADER -->
+			<header>
+				<h1 id="logo">🔧 Url Lite ⚙️</h1>
+			</header>
+
+			<h2>Besoin d'un URL plus court ?</h2>
+			<h3>Un lien plus rapide pour vos partage !</h3>
+
+			<!-- FORM -->
+			<form method="POST">
+				<input type="url" id="contentUrl" name="url" placeholder="Collez votre lien à raccourcir">
+				<button type="submit" id="urlValid" name="urlValid">Raccourcir</button>
+			</form>
+
+			<?php if (isset($_GET['error']) && isset($_GET['message'])) { ?>
+				<div class="center">
+					<div id="result">
+						<b><?php echo htmlspecialchars($_GET['message']); ?></b>
 					</div>
-				<?php } else if(isset($_GET['short'])) { ?>
-					<div class="center">
-						<div id="result">
-							<b>URL RACCOURCIE : </b>
-							http://localhost/?q=<?php echo htmlspecialchars($_GET['short']); ?>
-						</div>
+				</div>
+			<?php } else if (isset($_GET['short'])) { ?>
+				<div class="center">
+					<div id="result">
+						<b>URL RACCOURCIE : </b>
+						http://localhost/?q=<?php echo htmlspecialchars($_GET['short']); ?>
 					</div>
-				<?php } ?>
+				</div>
+			<?php } ?>
 
-			</div>
+		</div>
 
-		</section>
+	</section>
 
-		<!-- BRANDS -->
-		<section id="brands">
-			
-			<!-- CONTAINER -->
-			<div class="container">
-				<h3>Ces marques nous font confiance</h3>
-				<img src="asset/img/1.png" alt="1" class="picture">
-				<img src="asset/img/2.png" alt="2" class="picture">
-				<img src="asset/img/3.png" alt="3" class="picture">
-				<img src="asset/img/4.png" alt="4" class="picture">
-			</div>
+	<!-- BRANDS -->
+	<section id="brands">
 
-		</section>
+		<!-- CONTAINER -->
+		<div class="container">
+			<h3>Ils nous font confiance</h3>
+			<a href="http://forum.devpeyroteric.fr" class="picture">👽 Lead Space Code 🛸</a>
+		</div>
 
-		<!-- FOOTER -->
-		<footer>
-			<img src="asset/img/logo2.png" alt="logo" id="logo"><br>
-			2018 © Bitly<br>
-			<a href="https://devpeyroteric.fr/#section5">Contact</a> - <a href="https://devpeyroteric.fr">À propos</a>
-		</footer>
-	</body>
+	</section>
+
+	<!-- FOOTER -->
+	<footer>
+		<h1 id="logo">🔧 Url Lite ⚙️</h1><br>
+		<a href="https://devpeyroteric.fr/#section5">Contact</a> - <a href="https://devpeyroteric.fr">À propos</a>
+	</footer>
+</body>
+
 </html>

@@ -1,75 +1,75 @@
 <?php
 // CONNEXION DATABASE
-require('action/dataBase.php');
+require('dataBase.php');
 // IS RECEIVED SHORTCUT
-if(isset($_GET['q'])){
+// if(isset($_GET['q'])){
 
-	// VARIABLE
-	$shortcut = htmlspecialchars($_GET['q']);
+// 	// VARIABLE
+// 	$shortcut = htmlspecialchars($_GET['q']);
 
-	// IS A SHORTCUT ?
-	$bdd = new PDO('mysql:host=localhost;dbname=bitly;charset=utf8', 'root', '');
-	$req =$bdd->prepare('SELECT COUNT(*) AS x FROM links WHERE shortcut = ?');
-	$req->execute(array($shortcut));
+// 	// IS A SHORTCUT ?
+// 	$bdd = new PDO('mysql:host=localhost;dbname=bitly;charset=utf8', 'root', '');
+// 	$req =$bdd->prepare('SELECT COUNT(*) AS x FROM links WHERE shortcut = ?');
+// 	$req->execute(array($shortcut));
 
-	while($result = $req->fetch()){
+// 	while($result = $req->fetch()){
 
-		if($result['x'] != 1){
-			header('location: ../?error=true&message=Adresse url non connue');
-			exit();
-		}
+// 		if($result['x'] != 1){
+// 			header('location: ../?error=true&message=Adresse url non connue');
+// 			exit();
+// 		}
 
-	}
+// 	}
 
-	// REDIRECTION
-	$req = $bdd->prepare('SELECT * FROM links WHERE shortcut = ?');
-	$req->execute(array($shortcut));
+// 	// REDIRECTION
+// 	$req = $bdd->prepare('SELECT * FROM links WHERE shortcut = ?');
+// 	$req->execute(array($shortcut));
 
-	while($result = $req->fetch()){
+// 	while($result = $req->fetch()){
 
-		header('location: '.$result['url']);
-		exit();
+// 		header('location: '.$result['url']);
+// 		exit();
 
-	}
+// 	}
 
-}
+// }
 
 // IS SENDING A FORM
 if(isset($_POST['url'])) {
-
+	
 	// VARIABLE
 	$url = $_POST['url'];
-
+	
 	// VERIFICATION SI URL EXISTE PAS 
 	if(!filter_var($url, FILTER_VALIDATE_URL)) {
 		// PAS UN LIEN
-		header('location: ../?error=true&message=Adresse url non valide');
-		exit();
-	}
-
+			header('location: ../../index.php?error=true&message=Adresse url non valide');
+		 	exit();
+	 }
+		
 	// RACCOURCIE
-	$shortcut = crypt($url, rand());
-
+	$linkCut = crypt($url, rand());
+	
 	// SI EXIST UNE FOIS ?
-	$bdd = new PDO('mysql:host=localhost;dbname=bitly;charset=utf8', 'root', '');
 	$req = $bdd->prepare('SELECT COUNT(*) AS x FROM links WHERE url = ?');
 	$req->execute(array($url));
-
+	
 	while($result = $req->fetch()){
 
-		if($result['x'] != 0){
-			header('location: ../?error=true&message=Adresse déjà raccourcie');
-			exit();
+		$req->closeCursor();
+		
+		// if($result['x'] != 0){
+			// 	header('location: ../../index.php?error=true&message=Adresse déjà raccourcie');
+			// 	exit();
+			// }
+			
 		}
-
-	}
-
-	// SAUVEGARDE BDD URL 
-	$req = $bdd->prepare('INSERT INTO links(url, shortcut) VALUES(?, ?)');
-	$req->execute(array($url, $shortcut));
-
-	header('location: ../?short='.$shortcut);
-	exit();
-
+		
+		// SAUVEGARDE BDD URL 
+		$req = $bdd->prepare('INSERT INTO links(url, lite_url) VALUES(?, ?)');
+		$req->execute(array($url, $linkCut));
+		
+		header('location: ../../index.php?short='.$linkCut);
+		exit();
+		
 }
-?>
