@@ -71,7 +71,7 @@ require('asset/action/indexContoler.php');
 	<!-- FOOTER -->
 	<footer>
 		<h1 id="logo">🔧 Url Lite ⚙️</h1><br>
-		<a href="https://devpeyroteric.fr/#section5" target="_blank">Contact</a> - <a href="https://devpeyroteric.fr" target="_blank">À propos</a>
+		<a href="https://devpeyroteric.fr/asset/template/contact.php" target="_blank">Contact</a> - <a href="https://devpeyroteric.fr" target="_blank">À propos</a>
 	</footer>
 </body>
 
