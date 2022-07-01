@@ -50,7 +50,7 @@ require('asset/action/indexContoler.php');
 				<div class="center">
 					<div id="result">
 						<b>URL RACCOURCIE : </b>
-						http://localhost/?q=<?php echo htmlspecialchars($_GET['short']); ?>
+						http://urllite.devpeyroteric.fr/?l=<?php echo htmlspecialchars($_GET['short']); ?>
 					</div>
 				</div>
 			<?php } ?>

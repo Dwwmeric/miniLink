@@ -1,38 +1,43 @@
 <?php
 // CONNEXION DATABASE
 require('dataBase.php');
-// IS RECEIVED SHORTCUT
-// if(isset($_GET['q'])){
 
-// 	// VARIABLE
-// 	$shortcut = htmlspecialchars($_GET['q']);
+// Reccupération avec le lien court 
+if(isset($_GET['l'])){
 
-// 	// IS A SHORTCUT ?
-// 	$bdd = new PDO('mysql:host=localhost;dbname=bitly;charset=utf8', 'root', '');
-// 	$req =$bdd->prepare('SELECT COUNT(*) AS x FROM links WHERE shortcut = ?');
-// 	$req->execute(array($shortcut));
+	
+	
+	// VARIABLE
+	$codeUrl = htmlspecialchars($_GET['l']);
 
-// 	while($result = $req->fetch()){
 
-// 		if($result['x'] != 1){
-// 			header('location: ../?error=true&message=Adresse url non connue');
-// 			exit();
-// 		}
+	// si l'url lite exixste ?
+ 	$req =$bdd->prepare('SELECT COUNT(*) AS x FROM links WHERE lite_url = ?');
+ 	$req->execute(array($codeUrl));
 
-// 	}
+ 	while($result = $req->fetch()){
+		$req->closeCursor();
 
-// 	// REDIRECTION
-// 	$req = $bdd->prepare('SELECT * FROM links WHERE shortcut = ?');
-// 	$req->execute(array($shortcut));
+ 		if($result['x'] != 1){
+			header('location:  ../../index.php?error=true&message=Adresse url non connue');
+ 			exit();
+ 		}
 
-// 	while($result = $req->fetch()){
+ 	}
 
-// 		header('location: '.$result['url']);
-// 		exit();
+	// REDIRECTION
+	$req = $bdd->prepare('SELECT * FROM links WHERE lite_url = ?');
+ 	$req->execute(array($codeUrl));
 
-// 	}
+ 	while($result = $req->fetch()){
+		$req->closeCursor();
 
-// }
+		header('location: '.$result['url']);
+		exit();
+
+	}
+
+}
 
 // IS SENDING A FORM
 if(isset($_POST['url'])) {
@@ -51,23 +56,28 @@ if(isset($_POST['url'])) {
 	$linkCut = crypt($url, rand());
 	
 	// SI EXIST UNE FOIS ?
-	$req = $bdd->prepare('SELECT COUNT(*) AS x FROM links WHERE url = ?');
+	$req = $bdd->prepare('SELECT * FROM links WHERE url = ?');
 	$req->execute(array($url));
 	
 	while($result = $req->fetch()){
 
 		$req->closeCursor();
 		
-		// if($result['x'] != 0){
-			// 	header('location: ../../index.php?error=true&message=Adresse déjà raccourcie');
-			// 	exit();
-			// }
+		 if($result['url'] != 0){
+
+			// VARRIABLE DE RENVOI 
+			$LiteExiste = $result['lite_url'];
+
+			header('location: ../../index.php?short='.$LiteExiste);
+			exit();
+			}
 			
 		}
 		
 		// SAUVEGARDE BDD URL 
 		$req = $bdd->prepare('INSERT INTO links(url, lite_url) VALUES(?, ?)');
 		$req->execute(array($url, $linkCut));
+		$req->closeCursor();
 		
 		header('location: ../../index.php?short='.$linkCut);
 		exit();
