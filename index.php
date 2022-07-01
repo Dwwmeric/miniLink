@@ -63,7 +63,7 @@ require('asset/action/indexContoler.php');
 		<!-- CONTAINER -->
 		<div >
 			<h3>Ils nous font confiance</h3>
-			<a href="http://forum.devpeyroteric.fr" class="picture">👽 Lead Space Code 🛸</a>
+			<a href="http://forum.devpeyroteric.fr" class="picture" target="_blank">👽 Lead Space Code 🛸</a>
 		</div>
 
 	</section>
@@ -71,7 +71,7 @@ require('asset/action/indexContoler.php');
 	<!-- FOOTER -->
 	<footer>
 		<h1 id="logo">🔧 Url Lite ⚙️</h1><br>
-		<a href="https://devpeyroteric.fr/#section5">Contact</a> - <a href="https://devpeyroteric.fr">À propos</a>
+		<a href="https://devpeyroteric.fr/#section5" target="_blank">Contact</a> - <a href="https://devpeyroteric.fr" target="_blank">À propos</a>
 	</footer>
 </body>
 
