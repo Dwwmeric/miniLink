@@ -13,7 +13,7 @@ require('asset/action/indexContoler.php');
 	<meta name="author" content="Peyrot Eric">
 	<title>Url Lite</title>
 	<link rel="stylesheet" type="text/css" href="asset/style.css">
-	<link rel="icon" type="image/png" href="asset/img/favico.png">
+	<link rel="icon" type="image/png" href="asset/img/—Pngtree—green check mark icon flat_6369017.png">
 	<!-- style text -->
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
