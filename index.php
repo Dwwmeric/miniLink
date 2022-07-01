@@ -22,9 +22,8 @@ require('asset/action/indexContoler.php');
 
 <body>
 	<!-- section url lite -->
-	<section id="urlLite">
+	<section id="urlLite" class="container-fluid">
 
-		<div class="container">
 
 			<!-- HEADER -->
 			<header>
@@ -36,7 +35,7 @@ require('asset/action/indexContoler.php');
 
 			<!-- FORM -->
 			<form method="POST">
-				<input type="url" id="contentUrl" name="url" placeholder="Collez votre lien à raccourcir">
+				<input type="url" id="contentUrl" name="url" placeholder="Collez votre lien ">
 				<button type="submit" id="urlValid" name="urlValid">Raccourcir</button>
 			</form>
 
@@ -55,15 +54,14 @@ require('asset/action/indexContoler.php');
 				</div>
 			<?php } ?>
 
-		</div>
 
 	</section>
 
 	<!-- BRANDS -->
-	<section id="brands">
+	<section id="brands" class="container-fluid">
 
 		<!-- CONTAINER -->
-		<div class="container">
+		<div >
 			<h3>Ils nous font confiance</h3>
 			<a href="http://forum.devpeyroteric.fr" class="picture">👽 Lead Space Code 🛸</a>
 		</div>

@@ -121,3 +121,24 @@ h3 {
 	font-weight: bold;
 	text-decoration: none;
 }
+
+/* pour écran 425px */
+@media screen and (max-width: 425px) {
+
+	#logo {
+		text-align: center;
+	}
+
+	h2{
+		font-size: 1.9em;
+	}
+	
+	h3 {
+		padding-bottom: 0;
+	}
+
+	#contentUrl {
+		width:80%;
+		margin-bottom: 10px;
+	}
+}
