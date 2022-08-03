@@ -63,7 +63,7 @@ require('asset/action/indexContoler.php');
 		<!-- CONTAINER -->
 		<div >
 			<h3>Ils nous font confiance</h3>
-			<a href="http://forum.devpeyroteric.fr" class="picture" target="_blank">👽 Lead Space Code 🛸</a>
+			<a href="#" class="picture" target="_blank">👽 Lead Space Code 🛸</a>
 		</div>
 
 	</section>
